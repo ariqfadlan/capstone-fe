@@ -13,7 +13,7 @@
           />
         </svg>
       </li>
-      <li :key="index" class="flex items-center">
+      <li class="flex items-center">
         <a :href="'/' + breadcrumb" class="text-gray-600">{{
           breadcrumbName
         }}</a>
