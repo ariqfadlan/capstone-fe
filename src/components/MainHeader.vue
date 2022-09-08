@@ -251,7 +251,7 @@
 import { useAuthStore } from "@/store/auth";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import {useToast} from "vue-toastification";
+import { useToast } from "vue-toastification";
 import { useSidebar } from "../hooks/useSidebar";
 
 const dropdownOpen = ref(false);
@@ -259,11 +259,11 @@ const { isOpen } = useSidebar();
 const notificationOpen = ref(false);
 const authStore = useAuthStore();
 const router = useRouter();
-const toast = useToast()
+const toast = useToast();
 
 function logout() {
   authStore.logout();
-  router.push("/").then();
-  toast.success('You have been log out')
+  router.push("/login");
+  toast.success("You have been log out");
 }
 </script>

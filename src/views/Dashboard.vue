@@ -119,7 +119,6 @@
     </div>
 
     <div class="mt-8"></div>
-
   </div>
 </template>
 
@@ -144,5 +143,4 @@ const testUser: User = {
   status: "Active",
   role: "Owner",
 };
-
 </script>

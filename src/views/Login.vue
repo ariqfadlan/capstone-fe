@@ -99,7 +99,7 @@ const logout = (): void => {
 async function login() {
   try {
     await authStore.login(username.value, password.value);
-    router.push("/dashboard");
+    router.push({name: 'Dashboard'})
     toast.success("Welcome!");
   } catch (e) {
     console.error("login failed");
