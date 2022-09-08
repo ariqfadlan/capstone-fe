@@ -16,62 +16,42 @@
             d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
           ></path>
         </svg>
-        <span class="text-xl font-semibold text-gray-700">SI Museum &amp; Cagar Budaya</span>
+        <span class="text-xl font-semibold text-gray-700"
+          >SI Museum &amp; Cagar Budaya</span
+        >
       </div>
 
       <form class="mt-4" @submit.prevent="login">
-        <label class="block">
+        <label for="username" class="block">
           <span class="text-sm text-gray-700">Username</span>
-          <input
-            type="type"
-            class="
-              block
-              w-full
-              mt-1
-              border-gray-200
-              rounded-md
-              focus:border-indigo-600
-              focus:ring
-              focus:ring-opacity-40
-              focus:ring-indigo-500
-            "
-            v-model="email"
-          />
         </label>
+        <input
+          id="username"
+          autocomplete="username"
+          type="type"
+          placeholder="johndoe"
+          class="block w-full mt-1 border-gray-200 rounded-md focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
+          v-model="username"
+        />
 
-        <label class="block mt-3">
+        <label for="password" class="block mt-3">
           <span class="text-sm text-gray-700">Password</span>
-          <input
-            type="password"
-            class="
-              block
-              w-full
-              mt-1
-              border-gray-200
-              rounded-md
-              focus:border-indigo-600
-              focus:ring
-              focus:ring-opacity-40
-              focus:ring-indigo-500
-            "
-            v-model="password"
-          />
         </label>
+        <input
+          id="password"
+          autocomplete="current-password"
+          type="password"
+          placeholder="••••••••"
+          class="block w-full mt-1 border-gray-200 rounded-md focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
+          v-model="password"
+        />
 
         <div class="flex items-center justify-between mt-4">
           <div>
             <label class="inline-flex items-center">
               <input
                 type="checkbox"
-                class="
-                  text-indigo-600
-                  border-gray-200
-                  rounded-md
-                  focus:border-indigo-600
-                  focus:ring
-                  focus:ring-opacity-40
-                  focus:ring-indigo-500
-                "
+                class="text-indigo-600 border-gray-200 rounded-md focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
               />
               <span class="mx-2 text-sm text-gray-600">Remember me</span>
             </label>
@@ -80,6 +60,7 @@
           <div>
             <a
               class="block text-sm text-indigo-700 fontme hover:underline"
+              @click="logout"
               href="#"
               >Forgot your password?</a
             >
@@ -89,16 +70,7 @@
         <div class="mt-6">
           <button
             type="submit"
-            class="
-              w-full
-              px-4
-              py-2
-              text-sm text-center text-white
-              bg-indigo-600
-              rounded-md
-              focus:outline-none
-              hover:bg-indigo-500
-            "
+            class="w-full px-4 py-2 text-sm text-center text-white bg-indigo-600 rounded-md focus:outline-none hover:bg-indigo-500"
           >
             Sign in
           </button>
@@ -109,14 +81,28 @@
 </template>
 
 <script setup lang="ts">
+import { useAuthStore } from "@/store/auth";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
 
 const router = useRouter();
-const email = ref("username");
-const password = ref("@#!@#asdf1231!_!@#");
+const username = ref("");
+const password = ref("");
+const authStore = useAuthStore();
+const toast = useToast();
 
-function login() {
-  router.push("/dashboard");
+const logout = (): void => {
+  authStore.logout();
+};
+
+async function login() {
+  try {
+    await authStore.login(username.value, password.value);
+    router.push("/dashboard");
+    toast.success("Welcome!");
+  } catch (e) {
+    console.error("login failed");
+  }
 }
 </script>
