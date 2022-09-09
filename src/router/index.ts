@@ -67,7 +67,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "Blank",
     component: Blank,
   },
-  { path: "/:pathMatch(.*)*", component: NotFound },
+  { path: "/:pathMatch(.*)*", component: NotFound, meta: { layout: "empty" } },
 ];
 
 const router = createRouter({

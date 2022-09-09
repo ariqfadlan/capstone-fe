@@ -1,3 +1,4 @@
+import { useAuthStore } from "@/store/auth";
 import type { AxiosInstance, AxiosRequestConfig, AxiosError } from "axios";
 import axios from "axios";
 import { useToast } from "vue-toastification";
@@ -15,8 +16,11 @@ const service: AxiosInstance = axios.create({
 });
 
 service.interceptors.request.use((config: AxiosRequestConfig) => {
+  const { token } = useAuthStore();
   config.headers = config.headers ?? {};
-  config.headers.Authorization = `Bearer dummy-token`;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
   return config;
 });
 
