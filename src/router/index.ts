@@ -15,6 +15,11 @@ import { useAuthStore } from "@/store/auth";
 
 const routes: Array<RouteRecordRaw> = [
   {
+    name: "Root",
+    path: "/",
+    redirect: { name: "Dashboard" },
+  },
+  {
     path: "/login",
     name: "Login",
     component: Login,
