@@ -2,6 +2,7 @@ import { useAuthStore } from "@/store/auth";
 import type { AxiosInstance, AxiosRequestConfig, AxiosError } from "axios";
 import axios from "axios";
 import { useToast } from "vue-toastification";
+import applyCaseMiddleware from "axios-case-converter";
 
 const toast = useToast();
 
@@ -29,9 +30,9 @@ service.interceptors.response.use(
     return response;
   },
   (error: AxiosError<IErrorResponse>) => {
-    if (error.response?.data.error) {
+    if (error?.response?.data.error) {
       toast.error(error.response.data.error);
-    } else if (error.response?.data.errors) {
+    } else if (error?.response?.data.errors) {
       for (let errorMessage of error.response.data.errors) {
         toast.error(errorMessage);
       }
@@ -39,4 +40,4 @@ service.interceptors.response.use(
   }
 );
 
-export default service;
+export default applyCaseMiddleware(service);

@@ -1,5 +1,4 @@
 <template>
-  <p>hello from components</p>
   <div class="mt-8">
     <div class="flex flex-col mt-6">
       <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -39,7 +38,7 @@
             </thead>
 
             <tbody class="bg-white">
-              <tr v-for="(u, index) in wideCollectionTableData" :key="index">
+              <tr v-for="(u, index) in collections" :key="index">
                 <td
                   class="px-6 py-4 border-b border-gray-200 whitespace-nowrap"
                 >
@@ -61,7 +60,7 @@
                 >
                   <span
                     class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
-                    >{{ u.typeString }}</span
+                    >{{ u.typeCode }}</span
                   >
                 </td>
 
@@ -85,6 +84,22 @@
                 >
                   <div class="flex justify-around">
                     <span class="text-yellow-500 flex justify-center">
+                      <a href="#" class="mx-2 px-2 rounded-md"
+                        ><svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          class="h-5 w-5 text-blue-700"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9zm3.75 11.625a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
+                          />
+                        </svg>
+                      </a>
                       <a href="#" class="mx-2 px-2 rounded-md"
                         ><svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -142,19 +157,20 @@ import { useCollectionStore } from "../../store/collections";
 const collectionStore = useCollectionStore();
 const { wideCollectionTableData } = useTableData();
 
+const format = (x: ICollectionResponseData): ICollection => {
+  return {
+    ...x,
+    material: MaterialType[x.material],
+    status: StatusType[x.status],
+    acquisitionWay: AcquisitionWayType[x.acquisitionWay],
+  };
+};
+
 const formatResponse = (src: ICollectionResponseData[]): ICollection[] => {
-  const dest = src.map((x) => {
-    return {
-      ...x,
-      material: MaterialType[x.material],
-      status: StatusType[x.status],
-      acquisitionWay: AcquisitionWayType[x.acquisitionWay],
-    };
-  });
+  const dest = src.map(format);
   return dest;
 };
 
 const responseData: ICollectionResponseData[] = await collectionStore.getAll();
 const collections = formatResponse(responseData);
-console.log(collections);
 </script>
