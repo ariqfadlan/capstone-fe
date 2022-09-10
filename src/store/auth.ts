@@ -1,17 +1,8 @@
 import { defineStore } from "pinia";
 import request from "@/utils/request";
 import { ref } from "vue";
-
-export interface IUserData {
-  id?: number;
-  username?: string;
-  is_superuser?: boolean;
-}
-
-export interface ILoginResponse {
-  user: IUserData;
-  token: string;
-}
+import type { IUserData } from "@/types/users";
+import type { ILoginResponse } from "@/types/auth";
 
 export const useAuthStore = defineStore("auth", () => {
   const token = ref<string>(localStorage.getItem("access_token") || "");

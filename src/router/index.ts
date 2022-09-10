@@ -11,6 +11,7 @@ import Card from "../views/CardView.vue";
 import Blank from "../views/BlankView.vue";
 import NotFound from "../views/NotFound.vue";
 import Collection from "../views/CollectionView.vue";
+import User from "../views/UserView.vue";
 import { useAuthStore } from "@/store/auth";
 
 const routes: Array<RouteRecordRaw> = [
@@ -35,6 +36,12 @@ const routes: Array<RouteRecordRaw> = [
     path: "/collections",
     name: "Collections",
     component: Collection,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/users",
+    name: "users",
+    component: User,
     meta: { requiresAuth: true },
   },
   {

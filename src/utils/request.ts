@@ -3,13 +3,9 @@ import type { AxiosInstance, AxiosRequestConfig, AxiosError } from "axios";
 import axios from "axios";
 import { useToast } from "vue-toastification";
 import applyCaseMiddleware from "axios-case-converter";
+import type { IErrorResponse } from "@/types/errors";
 
 const toast = useToast();
-
-interface IErrorResponse {
-  error?: string;
-  errors?: string[];
-}
 
 const service: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
@@ -30,9 +26,9 @@ service.interceptors.response.use(
     return response;
   },
   (error: AxiosError<IErrorResponse>) => {
-    if (error?.response?.data.error) {
+    if (error?.response?.data?.error) {
       toast.error(error.response.data.error);
-    } else if (error?.response?.data.errors) {
+    } else if (error?.response?.data?.errors) {
       for (let errorMessage of error.response.data.errors) {
         toast.error(errorMessage);
       }

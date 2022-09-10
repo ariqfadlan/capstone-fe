@@ -155,7 +155,6 @@ import {
 } from "@/types/collections";
 import { useCollectionStore } from "../../store/collections";
 const collectionStore = useCollectionStore();
-const { wideCollectionTableData } = useTableData();
 
 const format = (x: ICollectionResponseData): ICollection => {
   return {

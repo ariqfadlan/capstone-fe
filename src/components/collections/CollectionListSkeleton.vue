@@ -11,29 +11,31 @@
                 <th
                   class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100 border-b border-gray-200"
                 >
-                  Nama Benda
+                  <div class="h-4 px-1 bg-slate-300 rounded"></div>
                 </th>
                 <th
                   class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100 border-b border-gray-200"
                 >
-                  Bahan
+                  <div class="h-4 px-1 bg-slate-300 rounded"></div>
                 </th>
                 <th
                   class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100 border-b border-gray-200"
                 >
-                  Jenis
+                  <div class="h-4 px-1 bg-slate-300 rounded"></div>
                 </th>
                 <th
                   class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100 border-b border-gray-200"
                 >
-                  Kondisi
+                  <div class="h-4 px-1 bg-slate-300 rounded"></div>
                 </th>
                 <th
                   class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100 border-b border-gray-200"
                 >
-                  Ruang Penyimpanan
+                  <div class="h-4 px-1 bg-slate-300 rounded"></div>
                 </th>
-                <th class="px-6 py-3 bg-gray-100 border-b border-gray-200"></th>
+                <th class="px-6 py-3 bg-gray-100 border-b border-gray-200">
+                  <div class="h-4 px-1 bg-slate-300 rounded"></div>
+		</th>
               </tr>
             </thead>
 
