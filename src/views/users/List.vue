@@ -1,5 +1,5 @@
 <template>
-  <Breadcrumb :links="breadcrumb"/>
+  <Breadcrumb :links="breadcrumb" />
   <div class="mt-4">
     <div v-if="error">
       <ErrorAlert :err="error" />

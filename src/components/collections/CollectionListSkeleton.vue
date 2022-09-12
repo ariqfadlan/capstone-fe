@@ -35,7 +35,7 @@
                 </th>
                 <th class="px-6 py-3 bg-gray-100 border-b border-gray-200">
                   <div class="h-4 px-1 bg-slate-300 rounded"></div>
-		</th>
+                </th>
               </tr>
             </thead>
 
@@ -51,13 +51,13 @@
                   class="px-6 py-4 border-b border-gray-200 whitespace-nowrap"
                 >
                   <div class="h-4 px-1 bg-slate-200 rounded"></div>
-		</td>
+                </td>
 
                 <td
                   class="px-6 py-4 border-b border-gray-200 whitespace-nowrap"
                 >
                   <div class="h-4 px-1 bg-slate-200 rounded"></div>
-		</td>
+                </td>
 
                 <td
                   class="px-6 py-4 border-b border-gray-200 whitespace-nowrap"
@@ -73,8 +73,7 @@
 
                 <td
                   class="px-6 py-4 text-sm font-medium leading-5 text-right border-b border-gray-200 whitespace-nowrap"
-                >
-                </td>
+                ></td>
               </tr>
             </tbody>
           </table>

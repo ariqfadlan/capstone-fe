@@ -85,11 +85,11 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/vue/24/outline";
 import type { IUserCreateFormData } from "@/types/users";
 import { parseUserRequest } from "@/utils/transforms/user";
 import { useUserStore } from "@/store/users";
-import {useToast} from "vue-toastification";
-import {useRouter} from "vue-router";
+import { useToast } from "vue-toastification";
+import { useRouter } from "vue-router";
 
-const toast = useToast()
-const router = useRouter()
+const toast = useToast();
+const router = useRouter();
 const userStore = useUserStore();
 const passwordInputType = ref("password");
 const toggleShowPassword = () => {
@@ -107,8 +107,8 @@ async function create() {
   const data = parseUserRequest(formData);
   try {
     await userStore.create(data);
-    toast.success('New user created!')
-    router.go(-1)
+    toast.success("New user created!");
+    router.go(-1);
   } catch (e) {
     console.error("gagal buat");
   }

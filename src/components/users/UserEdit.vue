@@ -78,12 +78,12 @@ import type { IUserCreateFormData } from "@/types/users";
 import { parseUserRequest, parseUserUpdate } from "@/utils/transforms/user";
 import { useUserStore } from "@/store/users";
 import { useRoute, useRouter } from "vue-router";
-import {useToast} from "vue-toastification";
+import { useToast } from "vue-toastification";
 
 const route = useRoute();
 const router = useRouter();
 const userStore = useUserStore();
-const toast = useToast()
+const toast = useToast();
 
 const id = route.params.id as string;
 const passwordInputType = ref("password");
@@ -100,8 +100,8 @@ async function update() {
   const data = parseUserRequest(formData);
   try {
     await userStore.update(id, data);
-    toast.success('Update success!')
-    router.go(-1)
+    toast.success("Update success!");
+    router.go(-1);
   } catch (e) {
     console.error("update failed");
   }

@@ -1,5 +1,5 @@
 <template>
-  <Breadcrumb :links="breadcrumb"/>
+  <Breadcrumb :links="breadcrumb" />
   <div class="mt-4">
     <div v-if="error">
       <ErrorAlert :err="error" />
@@ -16,7 +16,10 @@ import UserListSkeleton from "@/components/users/UserListSkeleton.vue";
 import { onErrorCaptured, ref } from "vue";
 import ErrorAlert from "@/partials/ErrorAlert.vue";
 import Breadcrumb from "../../partials/Breadcrumb.vue";
-const breadcrumb = [{ link: "/users/list", name: "Users" }, {link: "#", name: "Detail"}];
+const breadcrumb = [
+  { link: "/users/list", name: "Users" },
+  { link: "#", name: "Detail" },
+];
 
 const error = ref<Error | null>(null);
 onErrorCaptured((err: Error) => {

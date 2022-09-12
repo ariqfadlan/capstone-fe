@@ -18,9 +18,11 @@
         :key="link.name"
         class="flex items-center"
       >
-	<router-link custom v-slot="{href, navigate}" :to="link.link">
-        <a :href="href" @click="navigate" class="text-gray-500">{{ link.name }}</a>
-	</router-link>
+        <router-link custom v-slot="{ href, navigate }" :to="link.link">
+          <a :href="href" @click="navigate" class="text-gray-500">{{
+            link.name
+          }}</a>
+        </router-link>
         <svg
           v-if="i != Object.keys(links).length - 1"
           class="fill-current w-3 h-3 mx-3 text-blue-600"
