@@ -29,22 +29,40 @@
           id="username"
           autocomplete="username"
           type="type"
+          tabindex="1"
           placeholder="johndoe"
-          class="block w-full mt-1 border-gray-200 rounded-md focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
+          class="block w-full mt-1 p-2 border border-gray-200 rounded-md focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
           v-model="username"
         />
 
         <label for="password" class="block mt-3">
           <span class="text-sm text-gray-700">Password</span>
         </label>
-        <input
-          id="password"
-          autocomplete="current-password"
-          type="password"
-          placeholder="••••••••"
-          class="block w-full mt-1 border-gray-200 rounded-md focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
-          v-model="password"
-        />
+        <div class="relative flex">
+          <input
+            id="password"
+            autocomplete="current-password"
+            tabindex="2"
+            :placeholder="
+              passwordInputType === 'password'
+                ? '•••••••••••'
+                : 'berkahselalu1234'
+            "
+            :type="passwordInputType"
+            class="block w-full mt-1 p-2 border border-gray-200 rounded-md focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
+            v-model="password"
+          />
+          <button type="button" @click.prevent="toggleShowPassword">
+            <EyeIcon
+              v-if="passwordInputType === 'password'"
+              class="w-6 h-6 absolute right-4 top-4 my-auto text-gray-600 hover:text-indigo-800"
+            />
+            <EyeSlashIcon
+              v-else
+              class="w-6 h-6 absolute right-4 top-4 my-auto text-gray-600 hover:text-indigo-800"
+            />
+          </button>
+        </div>
 
         <div class="flex items-center justify-between mt-4">
           <div>
@@ -69,6 +87,7 @@
 
         <div class="mt-6">
           <button
+            tabindex="3"
             type="submit"
             class="w-full px-4 py-2 text-sm text-center text-white bg-indigo-600 rounded-md focus:outline-none hover:bg-indigo-500"
           >
@@ -85,12 +104,19 @@ import { useAuthStore } from "@/store/auth";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/vue/24/outline";
 
 const router = useRouter();
 const username = ref("");
 const password = ref("");
 const authStore = useAuthStore();
 const toast = useToast();
+
+const passwordInputType = ref("password");
+const toggleShowPassword = () => {
+  passwordInputType.value =
+    passwordInputType.value === "password" ? "text" : "password";
+};
 
 const logout = (): void => {
   authStore.logout();
@@ -99,7 +125,7 @@ const logout = (): void => {
 async function login() {
   try {
     await authStore.login(username.value, password.value);
-    router.push({name: 'Dashboard'})
+    router.push({ name: "Dashboard" });
     toast.success("Welcome!");
   } catch (e) {
     console.error("login failed");

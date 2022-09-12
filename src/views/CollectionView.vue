@@ -3,7 +3,7 @@
   <Breadcrumb breadcrumb="Collections" />
   <Suspense>
     <CollectionList />
-    <template #fallback><CollectionListSkeleton/></template>
+    <template #fallback><CollectionListSkeleton /></template>
   </Suspense>
 </template>
 <script lang="ts" setup>

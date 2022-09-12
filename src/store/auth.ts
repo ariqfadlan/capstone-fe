@@ -1,12 +1,16 @@
 import { defineStore } from "pinia";
 import request from "@/utils/request";
 import { ref } from "vue";
-import type { IUserData } from "@/types/users";
+import type { IUserResponseData } from "@/types/users";
 import type { ILoginResponse } from "@/types/auth";
+import { useRouter } from "vue-router";
 
 export const useAuthStore = defineStore("auth", () => {
+  const router = useRouter();
   const token = ref<string>(localStorage.getItem("access_token") || "");
-  const user = ref<IUserData>(JSON.parse(localStorage.getItem("user") || "{}"));
+  const user = ref<IUserResponseData>(
+    JSON.parse(localStorage.getItem("user") || "{}")
+  );
 
   const login = async (username: string, password: string): Promise<void> => {
     const { data } = await request.post<ILoginResponse>("/users/auth/login", {
@@ -25,6 +29,7 @@ export const useAuthStore = defineStore("auth", () => {
     token.value = "";
     localStorage.removeItem("user");
     localStorage.removeItem("access_token");
+    router.push("/login");
   };
 
   return { token, user, login, logout };

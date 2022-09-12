@@ -18,21 +18,6 @@
                 >
                   <div class="h-4 px-1 bg-slate-300 rounded"></div>
                 </th>
-                <th
-                  class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100 border-b border-gray-200"
-                >
-                  <div class="h-4 px-1 bg-slate-300 rounded"></div>
-                </th>
-                <th
-                  class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100 border-b border-gray-200"
-                >
-                  <div class="h-4 px-1 bg-slate-300 rounded"></div>
-                </th>
-                <th
-                  class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100 border-b border-gray-200"
-                >
-                  <div class="h-4 px-1 bg-slate-300 rounded"></div>
-                </th>
                 <th class="px-6 py-3 bg-gray-100 border-b border-gray-200">
                   <div class="h-4 px-1 bg-slate-300 rounded"></div>
                 </th>
@@ -52,28 +37,11 @@
                 >
                   <div class="h-4 px-1 bg-slate-200 rounded"></div>
                 </td>
-
-                <td
-                  class="px-6 py-4 border-b border-gray-200 whitespace-nowrap"
-                >
-                  <div class="h-4 px-1 bg-slate-200 rounded"></div>
-                </td>
-
-                <td
-                  class="px-6 py-4 border-b border-gray-200 whitespace-nowrap"
-                >
-                  <div class="h-4 px-1 bg-slate-200 rounded"></div>
-                </td>
-
-                <td
-                  class="px-6 py-4 text-sm leading-5 text-gray-500 border-b border-gray-200 whitespace-nowrap"
-                >
-                  <div class="h-4 px-1 bg-slate-200 rounded"></div>
-                </td>
-
                 <td
                   class="px-6 py-4 text-sm font-medium leading-5 text-right border-b border-gray-200 whitespace-nowrap"
-                ></td>
+                >
+                  <div class="h-4 px-1 bg-slate-200 rounded"></div>
+                </td>
               </tr>
             </tbody>
           </table>

@@ -4,15 +4,7 @@
     class="fixed bottom-0 right-0 w-full md:bottom-8 md:right-12 md:w-auto z-60"
   >
     <div
-      class="
-        bg-gray-800
-        text-gray-50 text-sm
-        p-3
-        md:rounded
-        shadow-lg
-        flex
-        justify-between
-      "
+      class="bg-gray-800 text-gray-50 text-sm p-3 md:rounded shadow-lg flex justify-between"
     >
       <div>
         👉

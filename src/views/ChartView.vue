@@ -8,15 +8,7 @@
 
       <div class="mt-6">
         <div
-          class="
-            my-6
-            overflow-hidden
-            bg-white
-            rounded-md
-            shadow
-            grid grid-cols-2
-            gap-3
-          "
+          class="my-6 overflow-hidden bg-white rounded-md shadow grid grid-cols-2 gap-3"
         >
           <LineChart />
           <DonutChart />

@@ -147,13 +147,9 @@
       <div class="relative">
         <button
           @click="dropdownOpen = !dropdownOpen"
-          class="relative z-10 block w-8 h-8 overflow-hidden rounded-full shadow focus:outline-none"
+          class="relative z-10 block w-6 h-6 text-gray-600 focus:outline-none"
         >
-          <img
-            class="object-cover w-full h-full"
-            src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=296&q=80"
-            alt="Your avatar"
-          />
+          <UserCircleIcon />
         </button>
 
         <div
@@ -250,20 +246,18 @@
 <script setup lang="ts">
 import { useAuthStore } from "@/store/auth";
 import { ref } from "vue";
-import { useRouter } from "vue-router";
-import { useToast } from "vue-toastification";
 import { useSidebar } from "../hooks/useSidebar";
+import { useToast } from "vue-toastification";
+import { UserCircleIcon } from "@heroicons/vue/24/outline";
 
+const toast = useToast();
 const dropdownOpen = ref(false);
 const { isOpen } = useSidebar();
 const notificationOpen = ref(false);
 const authStore = useAuthStore();
-const router = useRouter();
-const toast = useToast();
 
 function logout() {
   authStore.logout();
-  router.push("/login");
-  toast.success("You have been log out");
+  toast.info("Anda berhasil keluar!");
 }
 </script>

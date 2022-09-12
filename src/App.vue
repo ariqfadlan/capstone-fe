@@ -4,14 +4,14 @@
   </component>
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { computed } from "vue";
+import { useRouter } from "vue-router";
 
-const defaultLayout = 'default'
+const defaultLayout = "default";
 
-const { currentRoute } = useRouter()
+const { currentRoute } = useRouter();
 
 const layout = computed(
   () => `${currentRoute.value.meta.layout || defaultLayout}-layout`
-)
+);
 </script>

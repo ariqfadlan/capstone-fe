@@ -25,13 +25,20 @@ service.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error: AxiosError<IErrorResponse>) => {
+  (error: AxiosError<IErrorResponse & String>) => {
+    const { logout } = useAuthStore();
     if (error?.response?.data?.error) {
       toast.error(error.response.data.error);
     } else if (error?.response?.data?.errors) {
-      for (let errorMessage of error.response.data.errors) {
+      for (const errorMessage of error.response.data.errors) {
         toast.error(errorMessage);
       }
+    } else if (
+      error?.response?.status === 401 &&
+      error?.response?.data.includes("token is expired")
+    ) {
+      logout();
+      toast.info("Sesi Anda telah habis, silakan login kembali!");
     } else return Promise.reject(error);
   }
 );
