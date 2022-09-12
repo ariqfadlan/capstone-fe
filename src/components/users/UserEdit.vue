@@ -7,7 +7,7 @@
 
           <div class="grid grid-cols-1 sm:w-3/5 lg:w-1/2 xl:w-2/5 gap-6 mt-4">
             <div class="mb-2 pb-2 border-b border-gray40">
-              <label for="username" class="text-gray-600">Username</label>
+              <label for="username" class="text-gray-600">Username Baru</label>
               <input
                 v-model.lazy="formData.username"
                 id="username"
@@ -17,7 +17,7 @@
             </div>
 
             <div class="mb-2 pb-2 border-b border-gray40">
-              <label for="role" class="text-gray-600">Peran</label>
+              <label for="role" class="text-gray-600">Peran Baru</label>
               <select
                 v-model="formData.role"
                 id="role"
@@ -30,12 +30,13 @@
             </div>
 
             <div>
-              <label class="text-gray-700" for="password">Password</label>
+              <label class="text-gray-700" for="password">Password Baru</label>
               <div class="relative flex">
                 <input
                   v-model.lazy="formData.password"
                   id="password"
                   class="w-full mt-2 p-2 border border-gray-40 rounded-md focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
+                  placeholder="•••••••••••"
                   :type="passwordInputType"
                 />
                 <button @click.prevent="toggleShowPassword">

@@ -6,12 +6,11 @@ import type {
   IUserRequestData,
 } from "@/types/users";
 
-function parseUserResponse(x: IUserResponseData): IUserData {
+export function parseUserResponse(x: IUserResponseData): IUserData {
   const result = {
     ...x,
     role: RoleType[Number(x.isSuperuser)],
   };
-  delete result.isSuperuser;
   return result;
 }
 
