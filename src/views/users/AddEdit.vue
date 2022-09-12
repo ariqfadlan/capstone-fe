@@ -7,6 +7,7 @@
     <Suspense v-else>
       <UserEdit v-if="isEditing" />
       <UserAdd v-else />
+      <template #fallback><UserFormSkeleton /></template>
     </Suspense>
   </div>
 </template>
@@ -17,6 +18,7 @@ import ErrorAlert from "@/partials/ErrorAlert.vue";
 import Breadcrumb from "@/partials/Breadcrumb.vue";
 import { useRoute } from "vue-router";
 import UserEdit from "@/components/users/UserEdit.vue";
+import UserFormSkeleton from "../../partials/users/UserFormSkeleton.vue";
 
 const route = useRoute();
 const id = route.params.id;

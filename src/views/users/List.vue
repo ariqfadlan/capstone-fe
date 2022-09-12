@@ -12,7 +12,7 @@
 </template>
 <script lang="ts" setup>
 import UserList from "@/components/users/UserList.vue";
-import UserListSkeleton from "@/components/users/UserListSkeleton.vue";
+import UserListSkeleton from "@/partials/users/UserListSkeleton.vue";
 import { onErrorCaptured, ref } from "vue";
 import ErrorAlert from "@/partials/ErrorAlert.vue";
 import Breadcrumb from "../../partials/Breadcrumb.vue";
