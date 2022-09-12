@@ -1,8 +1,7 @@
 <template>
   <div>
-    <Breadcrumb breadcrumb="" />
-    <!--Banner get you to github repo-->
-    <!--<Banner />-->
+    <Breadcrumb :links="breadcrumb" />
+    <h2 class="text-xl font-semibold leading-tight text-gray-700">Dashboard</h2>
     <div class="mt-4">
       <div class="flex flex-wrap -mx-6">
         <div class="w-full px-6 sm:w-1/2 xl:w-1/3">
@@ -123,24 +122,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import Breadcrumb from "../partials/Breadcrumb.vue";
-
-interface User {
-  name: string;
-  email: string;
-  title: string;
-  title2: string;
-  status: string;
-  role: string;
-}
-
-const testUser: User = {
-  name: "John Doe",
-  email: "john@example.com",
-  title: "Software Engineer",
-  title2: "Web dev",
-  status: "Active",
-  role: "Owner",
-};
+const breadcrumb = [{ link: "/dashboard", name: "Dashboard" }];
 </script>

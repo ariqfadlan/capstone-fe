@@ -250,20 +250,17 @@
 <script setup lang="ts">
 import { useAuthStore } from "@/store/auth";
 import { ref } from "vue";
-import { useRouter } from "vue-router";
-import { useToast } from "vue-toastification";
 import { useSidebar } from "../hooks/useSidebar";
+import { useToast } from "vue-toastification";
 
+const toast = useToast();
 const dropdownOpen = ref(false);
 const { isOpen } = useSidebar();
 const notificationOpen = ref(false);
 const authStore = useAuthStore();
-const router = useRouter();
-const toast = useToast();
 
 function logout() {
   authStore.logout();
-  router.push("/login");
-  toast.success("You have been log out");
+  toast.info("Anda berhasil keluar!");
 }
 </script>
