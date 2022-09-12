@@ -1,4 +1,5 @@
 <template>
+  <UserDelete v-bind="deleteProps" @toggle-delete-modal="toggleDeleteModal" />
   <div class="flex flex-row-reverse">
     <router-link :to="{ name: 'UserAdd' }">
       <button
@@ -72,7 +73,10 @@
                         </a>
                       </router-link>
                       <form method="POST">
-                        <button class="mx-2 px-2 rounded-md">
+                        <button
+                          @click.prevent="toggleDeleteModal(String(u.id))"
+                          class="mx-2 px-2 rounded-md"
+                        >
                           <TrashIcon class="h-5 w-5 text-red-700" />
                         </button>
                       </form>
@@ -91,8 +95,19 @@
 import { useUserStore } from "@/store/users";
 import { DocumentMagnifyingGlassIcon } from "@heroicons/vue/24/outline";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/vue/24/solid";
-import formatUser from "@/utils/transforms/user";
+import UserDelete from "./UserDelete.vue";
+import { ref } from "vue";
+import { storeToRefs } from "pinia";
+
 const userStore = useUserStore();
 await userStore.getAll();
-const users = userStore.users.map(formatUser);
+const { users } = storeToRefs(userStore);
+
+const deleteProps = ref({ isModalOpen: false, userId: "" });
+function toggleDeleteModal(id: string) {
+  deleteProps.value.userId = id;
+  if (deleteProps.value.isModalOpen === false) {
+    deleteProps.value.isModalOpen = true;
+  } else deleteProps.value.isModalOpen = false;
+}
 </script>

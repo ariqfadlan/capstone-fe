@@ -99,7 +99,7 @@ const formData = reactive<IUserCreateFormData>(parseUserUpdate(user));
 async function update() {
   const data = parseUserRequest(formData);
   try {
-    await userStore.update(id, data);
+    await userStore.updateById(id, data);
     toast.success("Update success!");
     router.go(-1);
   } catch (e) {

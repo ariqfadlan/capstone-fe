@@ -1,15 +1,16 @@
-import type { IUserResponseData, IUserRequestData } from "@/types/users";
+import type { IUserResponseData, IUserRequestData, IUserData } from "@/types/users";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import request from "@/utils/request";
+import formatUser from "@/utils/transforms/user";
 
 export const useUserStore = defineStore("user", () => {
-  const users = ref<IUserResponseData[]>([]);
+  const users = ref<IUserData[]>([]);
   const user = ref<IUserResponseData>({});
 
   const getAll = async (): Promise<void> => {
-    const { data } = await request.get("/users");
-    users.value = data;
+    const { data } = await request.get<IUserResponseData[]>("/users");
+    users.value = data.map(formatUser);
   };
 
   const getById = async (id: string): Promise<void> => {
@@ -22,10 +23,17 @@ export const useUserStore = defineStore("user", () => {
     user.value = data;
   };
 
-  const update = async (id: string, u: IUserRequestData): Promise<void> => {
+  const updateById = async (id: string, u: IUserRequestData): Promise<void> => {
     const { data } = await request.put(`/users/${id}`, u);
     user.value = data;
   };
 
-  return { users, user, getAll, getById, create, update };
+  const deleteById = async (id: string): Promise<void> => {
+    const { status } = await request.delete(`/users/${id}`);
+    if (status === 204) {
+    user.value = {};
+    }
+  };
+
+  return { users, user, getAll, getById, create, updateById, deleteById };
 });
