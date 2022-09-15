@@ -10,9 +10,9 @@ import Chart from "../views/ChartView.vue";
 import Card from "../views/CardView.vue";
 import Blank from "../views/BlankView.vue";
 import NotFound from "../views/NotFound.vue";
-import Collection from "../views/CollectionView.vue";
 import { useAuthStore } from "@/store/auth";
 import userRoutes from "./users";
+import collectionRoutes from "./collections";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -30,12 +30,6 @@ const routes: Array<RouteRecordRaw> = [
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
-    meta: { requiresAuth: true },
-  },
-  {
-    path: "/collections",
-    name: "Collections",
-    component: Collection,
     meta: { requiresAuth: true },
   },
   {
@@ -78,7 +72,7 @@ const routes: Array<RouteRecordRaw> = [
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...routes, userRoutes],
+  routes: [...routes, userRoutes, collectionRoutes],
 });
 
 router.beforeEach((to, _from, next) => {
