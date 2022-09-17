@@ -95,7 +95,7 @@ export interface ICollectionCreateFormData {
   typeCode?: string;
   startYear?: number;
   endYear?: number;
-  authorId?: number;
+  authorId?: string;
 }
 
 export interface ICollectionRequestData extends ICollectionResponseData {}

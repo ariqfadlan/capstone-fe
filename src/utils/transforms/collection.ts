@@ -5,6 +5,7 @@ import {
 } from "@/types/collections";
 import type {
   ICollectionData,
+  ICollectionRequestData,
   ICollectionResponseData,
   ICollectionCreateFormData,
 } from "@/types/collections";
@@ -31,12 +32,17 @@ export function parseCollectionResponse(
 }
 export function parseCollectionRequest(
   x: ICollectionCreateFormData
-): ICollectionResponseData {
+): ICollectionRequestData {
+  if (x.acquisitionEntryDate === undefined) {
+    throw new Error("Tanggal tak boleh kosong!");
+  }
   const result = {
     ...x,
     acquisitionEntryDate: new Date(
       x.acquisitionEntryDate as string
     ).toISOString(),
+    startYear: Number(x.startYear),
+    endYear: Number(x.endYear),
     typeCode: Number(x.typeCode),
     material: Number(x.material),
     status: Number(x.status),

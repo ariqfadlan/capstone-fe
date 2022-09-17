@@ -27,6 +27,7 @@ export const useCollectionStore = defineStore("collection", () => {
   };
 
   const create = async (req: ICollectionRequestData): Promise<void> => {
+    console.log(req);
     const { data } = await request.post<ICollectionResponseData>(
       `/collections`,
       req

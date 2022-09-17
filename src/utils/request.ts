@@ -17,6 +17,7 @@ service.interceptors.request.use((config: AxiosRequestConfig) => {
   config.headers = config.headers ?? {};
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
+    config.headers.ContentType = "application/json";
   }
   return config;
 });

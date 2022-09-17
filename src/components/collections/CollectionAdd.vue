@@ -223,6 +223,17 @@
             </div>
 
             <div class="mb-2 pb-2 border-b border-gray40">
+              <label for="storage" class="text-gray-600">Penyimpanan</label>
+              <input
+                v-model.lazy="formData.storage"
+                id="storage"
+                class="w-full mt-2 p-2 border border-gray-40 rounded-md focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
+                placeholder="amandamanopo"
+                type="text"
+              />
+            </div>
+
+            <div class="mb-2 pb-2 border-b border-gray40">
               <label for="object-size" class="text-gray-600">Ukuran</label>
               <input
                 v-model.lazy="formData.objectSize"
@@ -257,6 +268,24 @@
               />
             </div>
 
+            <div class="mb-2 pb-2 border-b border-gray40">
+              <label for="role" class="text-gray-600">Bahan</label>
+              <select
+                v-model.lazy="formData.authorId"
+                id="role"
+                class="block mt-2 rounded-md w-full p-2 text-gray-700 bg-white border border-gray-40 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
+              >
+                <option disabled selected>Pilih pegawai</option>
+                <option
+                  v-for="employee in employees"
+                  :value="employee.id"
+                  :key="employee.id"
+                >
+                  {{ employee.fullname }}
+                </option>
+              </select>
+            </div>
+
             <!-- end component--->
           </div>
 
@@ -264,6 +293,7 @@
             <button
               @click.prevent="$router.back()"
               class="mx-2 px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none"
+              type="button"
             >
               Cancel
             </button>
@@ -293,25 +323,31 @@ import { parseCollectionRequest } from "@/utils/transforms/collection";
 import { useToast } from "vue-toastification";
 import { useRouter } from "vue-router";
 import { useCollectionStore } from "@/store/collections";
+import { useEmployeeStore } from "@/store/employees";
+import { storeToRefs } from "pinia";
 
 const toast = useToast();
 const router = useRouter();
 const collectionStore = useCollectionStore();
+const employeeStore = useEmployeeStore();
 
 const formData = reactive<ICollectionCreateFormData>({
   material: "Pilih bahan",
   acquisitionWay: "Pilih cara",
   status: "Pilih status",
+  authorId: "Pilih pegawai",
 });
 
+const { employees } = storeToRefs(employeeStore);
+
 async function create() {
-  const data = parseCollectionRequest(formData);
   try {
+    const data = parseCollectionRequest(formData);
     await collectionStore.create(data);
     toast.success("New user created!");
     router.go(-1);
-  } catch (e) {
-    console.error("gagal buat");
+  } catch (e: any) {
+    console.error(e);
   }
 }
 
@@ -326,4 +362,6 @@ const acquisitionWay = Object.values(AcquisitionWayType).filter(
 const statusType = Object.values(StatusType).filter(
   (o) => typeof o == "string"
 );
+
+await employeeStore.getAll();
 </script>
