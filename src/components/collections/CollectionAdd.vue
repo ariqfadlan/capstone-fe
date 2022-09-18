@@ -56,7 +56,7 @@
                 v-model.lazy="formData.originDescription"
                 id="origin-description"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
+                placeholder="Tersimpan dengan baik oleh pihak Belanda"
               />
             </div>
 
@@ -69,7 +69,7 @@
                 type="text"
                 id="original-aterial"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
+                placeholder="Kediri"
               />
             </div>
 
@@ -82,7 +82,7 @@
                 type="text"
                 id="originSource"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
+                placeholder="Surabaya"
               />
             </div>
 
@@ -113,7 +113,6 @@
                 type="date"
                 id="acquisition-entry-date"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
               />
             </div>
 
@@ -126,7 +125,7 @@
                 v-model.lazy="formData.typeCode"
                 id="type-code-number"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
+                placeholder="001"
               />
             </div>
 
@@ -138,7 +137,7 @@
                 v-model.lazy="formData.recordOfTransfer"
                 id="record-of-transfer"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
+                placeholder="Nomor berita acara 001/PA/XI/1999"
               />
             </div>
 
@@ -150,7 +149,7 @@
                 v-model.lazy="formData.objectDescription"
                 id="object-description"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
+                placeholder="Deskripsi benda secara rinci"
               />
             </div>
 
@@ -163,7 +162,7 @@
                 v-model.lazy="formData.inventoryNumber"
                 id="inventory-number"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
+                placeholder="00001.100101.020001.01001"
               />
             </div>
 
@@ -174,7 +173,7 @@
                 v-model.lazy="formData.region"
                 id="region"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
+                placeholder="Jawa Timur"
               />
             </div>
 
@@ -187,7 +186,7 @@
                 v-model.lazy="formData.startYear"
                 id="start-year"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
+                placeholder="1999"
               />
             </div>
 
@@ -200,7 +199,7 @@
                 v-model.lazy="formData.endYear"
                 id="end-year"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
+                placeholder="2000"
               />
             </div>
 
@@ -228,7 +227,7 @@
                 v-model.lazy="formData.storage"
                 id="storage"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
+                placeholder="Ruang Penyimpanan Z"
                 type="text"
               />
             </div>
@@ -239,7 +238,7 @@
                 v-model.lazy="formData.objectSize"
                 id="object-size"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
+                placeholder="20 cm x 30 cm x 5 cm"
                 type="text"
               />
             </div>
@@ -252,7 +251,7 @@
                 v-model.lazy="formData.conditionDescription"
                 id="condition-description"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
+                placeholder="Keterangan kondisi benda"
               />
             </div>
 
@@ -264,7 +263,7 @@
                 v-model.lazy="formData.additionalInformation"
                 id="additional-information"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
+                placeholder="Keterangan tambahan"
               />
             </div>
 
