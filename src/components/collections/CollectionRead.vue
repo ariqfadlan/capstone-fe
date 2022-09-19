@@ -24,7 +24,7 @@
           </div>
 
           <div class="mb-2 pb-2 border-b border-gray40">
-            <div class="text-gray-600">Nama</div>
+            <div class="text-gray-600">Nomor Registrasi</div>
             <div class="text-gray-700 font-semibold text-lg" for="username">
               {{ result.registrationNumber }}
             </div>

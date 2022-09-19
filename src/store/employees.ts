@@ -1,5 +1,4 @@
 import type { IEmployeeData } from "@/types/employees";
-import type { IUserData } from "@/types/users";
 import request from "@/utils/request";
 import { defineStore } from "pinia";
 import { ref } from "vue";

@@ -285,6 +285,16 @@
               </select>
             </div>
 
+            <div class="mb-2 pb-2 border-b border-gray40">
+              <label for="image" class="text-gray-600">Gambar</label>
+              <input
+                type="file"
+                @change="setImage"
+                id="image"
+                class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
+              />
+            </div>
+
             <!-- end component--->
           </div>
 
@@ -311,7 +321,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import {
   MaterialType,
   AcquisitionWayType,
@@ -329,6 +339,7 @@ const toast = useToast();
 const router = useRouter();
 const collectionStore = useCollectionStore();
 const employeeStore = useEmployeeStore();
+const imageFile = ref<File>();
 
 const formData = reactive<ICollectionCreateFormData>({
   material: "Pilih bahan",
@@ -340,13 +351,28 @@ const formData = reactive<ICollectionCreateFormData>({
 const { employees } = storeToRefs(employeeStore);
 
 async function create() {
+  if (imageFile.value === undefined) {
+    toast.error("No selected image!");
+    return;
+  }
   try {
+    const imagePath = await collectionStore.uploadImage(imageFile.value);
     const data = parseCollectionRequest(formData);
+    data.imagePath = imagePath;
     await collectionStore.create(data);
     toast.success("New user created!");
     router.go(-1);
   } catch (e: any) {
     console.error(e);
+  }
+}
+
+function setImage(e: Event) {
+  const target = e.target as HTMLInputElement;
+  if (target?.files?.length === 1) {
+    imageFile.value = target.files[0];
+  } else {
+    toast.info("Please choose an image!");
   }
 }
 

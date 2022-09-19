@@ -35,5 +35,16 @@ export const useCollectionStore = defineStore("collection", () => {
     collection.value = parseCollectionResponse(data);
   };
 
-  return { collections, collection, getAll, getById, create };
+  const uploadImage = async (file: File): Promise<string> => {
+    let fd = new FormData();
+
+    fd.append("image", file);
+
+    const { data } = await request.post("/collections/image-upload", fd, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return data.imageUrl;
+  };
+
+  return { collections, collection, getAll, getById, create, uploadImage };
 });
