@@ -18,7 +18,7 @@ import CollectionRead from "../../components/collections/CollectionRead.vue";
 import CollectionReadSkeleton from "../../partials/collections/CollectionReadSkeleton.vue";
 const breadcrumb = [
   { link: "/collections/list", name: "Collections" },
-  { link: "#", name: "Details" },
+  { link: "#", name: "Detail" },
 ];
 
 const error = ref<Error | null>(null);
