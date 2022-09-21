@@ -11,11 +11,11 @@ export const useCollectionStore = defineStore("collection", () => {
   const collections = ref<ICollectionResponseData[]>([]);
   const collection = ref<ICollectionResponseData>({});
 
-  const getAll = async (): Promise<ICollectionResponseData[]> => {
+  const getAll = async (): Promise<void> => {
     const { data } = await request.get<ICollectionResponseData[]>(
       "/collections"
     );
-    return data;
+    collections.value = data;
   };
 
   const getById = async (id: string): Promise<void> => {

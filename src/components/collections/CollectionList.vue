@@ -127,13 +127,14 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { useCollectionStore } from "../../store/collections";
+import { useCollectionStore } from "@/store/collections";
 import { DocumentMagnifyingGlassIcon } from "@heroicons/vue/24/outline";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/vue/24/solid";
-import type { ICollectionResponseData } from "@/types/collections";
 import { parseCollectionResponse } from "@/utils/transforms/collection";
+import { computed } from "vue";
 const collectionStore = useCollectionStore();
 
-const responseData: ICollectionResponseData[] = await collectionStore.getAll();
-const collections = responseData.map(parseCollectionResponse);
+await collectionStore.getAll();
+const { collections: responseData } = collectionStore;
+const collections = computed(() => responseData.map(parseCollectionResponse));
 </script>
