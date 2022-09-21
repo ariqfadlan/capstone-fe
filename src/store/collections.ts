@@ -6,11 +6,10 @@ import type {
   ICollectionRequestData,
 } from "@/types/collections";
 import { ref } from "vue";
-import { parseCollectionResponse } from "@/utils/transforms/collection";
 
 export const useCollectionStore = defineStore("collection", () => {
-  const collections = ref<ICollectionData[]>([]);
-  const collection = ref<ICollectionData>({});
+  const collections = ref<ICollectionResponseData[]>([]);
+  const collection = ref<ICollectionResponseData>({});
 
   const getAll = async (): Promise<ICollectionResponseData[]> => {
     const { data } = await request.get<ICollectionResponseData[]>(
@@ -23,16 +22,15 @@ export const useCollectionStore = defineStore("collection", () => {
     const { data } = await request.get<ICollectionResponseData>(
       `/collections/${id}`
     );
-    collection.value = parseCollectionResponse(data);
+    collection.value = data;
   };
 
   const create = async (req: ICollectionRequestData): Promise<void> => {
-    console.log(req);
     const { data } = await request.post<ICollectionResponseData>(
       `/collections`,
       req
     );
-    collection.value = parseCollectionResponse(data);
+    collection.value = data;
   };
 
   const uploadImage = async (file: File): Promise<string> => {
@@ -46,5 +44,24 @@ export const useCollectionStore = defineStore("collection", () => {
     return data.imageUrl;
   };
 
-  return { collections, collection, getAll, getById, create, uploadImage };
+  const updateById = async (
+    id: string,
+    req: ICollectionRequestData
+  ): Promise<void> => {
+    const { data } = await request.put<ICollectionResponseData>(
+      `/collections/${id}`,
+      req
+    );
+    collection.value = data;
+  };
+
+  return {
+    collections,
+    collection,
+    getAll,
+    getById,
+    create,
+    uploadImage,
+    updateById,
+  };
 });

@@ -103,9 +103,15 @@
                             class="h-5 w-5 text-blue-700"
                         /></a>
                       </router-link>
-                      <a class="mx-2 px-2" href="#">
-                        <PencilSquareIcon class="h-5 w-5 text-green-700"
-                      /></a>
+                      <router-link
+                        custom
+                        :to="{ name: 'CollectionEdit', params: { id: u.id } }"
+                        v-slot="{ href, navigate }"
+                      >
+                        <a class="mx-2 px-2" :href="href" @click="navigate">
+                          <PencilSquareIcon class="h-5 w-5 text-green-700"
+                        /></a>
+                      </router-link>
                       <a class="mx-2 px-2" href="#">
                         <TrashIcon class="h-5 w-5 text-red-700"
                       /></a>

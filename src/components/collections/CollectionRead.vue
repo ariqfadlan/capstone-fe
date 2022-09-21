@@ -8,6 +8,7 @@
         Close
       </button>
       <button
+        @click="$router.push({ name: 'CollectionEdit', params: { id } })"
         class="ml-2 px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none"
       >
         Edit
@@ -172,6 +173,8 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { useCollectionStore } from "@/store/collections";
+import { computed } from "vue";
+import { parseCollectionResponse } from "@/utils/transforms/collection";
 
 const route = useRoute();
 const collectionStore = useCollectionStore();
@@ -182,5 +185,7 @@ try {
   console.log(e);
 }
 
-const result = collectionStore.collection;
+const result = computed(() =>
+  parseCollectionResponse(collectionStore.collection)
+);
 </script>

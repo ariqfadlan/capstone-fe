@@ -268,7 +268,7 @@
             </div>
 
             <div class="mb-2 pb-2 border-b border-gray40">
-              <label for="role" class="text-gray-600">Bahan</label>
+              <label for="role" class="text-gray-600">Penanggung Jawab</label>
               <select
                 v-model.lazy="formData.authorId"
                 id="role"

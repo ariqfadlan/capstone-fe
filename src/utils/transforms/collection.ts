@@ -30,13 +30,30 @@ export function parseCollectionResponse(
     acquisitionWay: AcquisitionWayType[x.acquisitionWay as number],
   };
 }
+
+export function parseCollectionUpdate(
+  x: ICollectionRequestData
+): ICollectionCreateFormData {
+  return {
+    ...x,
+    material: x.material?.toString(),
+    status: x.status?.toString(),
+    acquisitionWay: x.acquisitionWay?.toString(),
+    typeCode: x.typeCode?.toString(),
+    authorId: x.authorId?.toString(),
+    acquisitionEntryDate: new Date(x.acquisitionEntryDate as string)
+      .toISOString()
+      .slice(0, 10),
+  };
+}
+
 export function parseCollectionRequest(
   x: ICollectionCreateFormData
 ): ICollectionRequestData {
   if (x.acquisitionEntryDate === undefined) {
     throw new Error("Tanggal tak boleh kosong!");
   }
-  const result = {
+  return {
     ...x,
     acquisitionEntryDate: new Date(
       x.acquisitionEntryDate as string
@@ -46,7 +63,7 @@ export function parseCollectionRequest(
     typeCode: Number(x.typeCode),
     material: Number(x.material),
     status: Number(x.status),
+    authorId: Number(x.authorId),
     acquisitionWay: Number(x.acquisitionWay),
   };
-  return result;
 }

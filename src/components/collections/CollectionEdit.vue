@@ -1,10 +1,10 @@
 <template>
   <div class="mt-8">
     <div class="mt-4">
-      <form @submit.prevent="create">
+      <form @submit.prevent="update">
         <div class="p-6 bg-white rounded-md shadow-md">
           <h2 class="text-lg font-semibold text-gray-700 capitalize">
-            Tambah Koleksi
+            Ubah Koleksi
           </h2>
 
           <div class="grid grid-cols-1 sm:w-3/5 lg:w-1/2 xl:w-2/5 gap-6 mt-4">
@@ -16,7 +16,6 @@
                 v-model.lazy="formData.name"
                 id="name"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
                 type="text"
               />
             </div>
@@ -29,7 +28,6 @@
                 v-model.lazy="formData.registrationNumber"
                 id="registration-number"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
                 type="text"
               />
             </div>
@@ -41,8 +39,10 @@
                 id="role"
                 class="block mt-2 rounded-md w-full p-2 text-gray-700 bg-white border border-gray-40 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
               >
-                <option disabled selected>Pilih</option>
-                <option value="0">Staff</option>
+                <option disabled selected>Pilih bahan</option>
+                <option v-for="(val, i) in materialType" :value="i" :key="i">
+                  {{ val }}
+                </option>
               </select>
             </div>
 
@@ -54,7 +54,6 @@
                 v-model.lazy="formData.originDescription"
                 id="origin-description"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
               />
             </div>
 
@@ -67,7 +66,6 @@
                 type="text"
                 id="original-aterial"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
               />
             </div>
 
@@ -80,7 +78,6 @@
                 type="text"
                 id="originSource"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
               />
             </div>
 
@@ -91,32 +88,38 @@
                 id="role"
                 class="block mt-2 rounded-md w-full p-2 text-gray-700 bg-white border border-gray-40 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
               >
-                <option disabled selected>Pilih</option>
-                <option value="0">Staff</option>
+                <option disabled selected>Pilih cara</option>
+                <option
+                  v-for="(val, key) in acquisitionWay"
+                  :value="key"
+                  :key="key"
+                >
+                  {{ val }}
+                </option>
               </select>
             </div>
 
             <div class="mb-2 pb-2 border-b border-gray40">
-              <label for="original-material" class="text-gray-600"
+              <label for="acquisition-entry-date" class="text-gray-600"
                 >Tanggal Perolehan</label
               >
               <input
-                v-model.lazy="formData.originalMaterial"
+                v-model.lazy="formData.acquisitionEntryDate"
                 type="date"
-                id="original-aterial"
+                id="acquisition-entry-date"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
               />
             </div>
 
             <div class="mb-2 pb-2 border-b border-gray40">
-              <label for="type-code" class="text-gray-600">Kode Jenis</label>
+              <label for="type-code-number" class="text-gray-600"
+                >Kode Jenis</label
+              >
               <input
                 type="text"
                 v-model.lazy="formData.typeCode"
-                id="type-code"
+                id="type-code-number"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
               />
             </div>
 
@@ -128,7 +131,6 @@
                 v-model.lazy="formData.recordOfTransfer"
                 id="record-of-transfer"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
               />
             </div>
 
@@ -140,7 +142,6 @@
                 v-model.lazy="formData.objectDescription"
                 id="object-description"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
               />
             </div>
 
@@ -153,7 +154,6 @@
                 v-model.lazy="formData.inventoryNumber"
                 id="inventory-number"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
               />
             </div>
 
@@ -164,7 +164,6 @@
                 v-model.lazy="formData.region"
                 id="region"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
               />
             </div>
 
@@ -177,7 +176,6 @@
                 v-model.lazy="formData.startYear"
                 id="start-year"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
               />
             </div>
 
@@ -190,20 +188,35 @@
                 v-model.lazy="formData.endYear"
                 id="end-year"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
               />
             </div>
 
             <div class="mb-2 pb-2 border-b border-gray40">
               <label for="role" class="text-gray-600">Status</label>
               <select
-                v-model.lazy="formData.material"
+                v-model.lazy="formData.status"
                 id="role"
                 class="block mt-2 rounded-md w-full p-2 text-gray-700 bg-white border border-gray-40 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
               >
-                <option disabled selected>Pilih</option>
-                <option value="0">Staff</option>
+                <option disabled selected>Pilih status</option>
+                <option
+                  v-for="(val, key) in statusType"
+                  :key="key"
+                  :value="key"
+                >
+                  {{ val }}
+                </option>
               </select>
+            </div>
+
+            <div class="mb-2 pb-2 border-b border-gray40">
+              <label for="storage" class="text-gray-600">Penyimpanan</label>
+              <input
+                v-model.lazy="formData.storage"
+                id="storage"
+                class="w-full mt-2 p-2 border border-gray-40 rounded-md focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
+                type="text"
+              />
             </div>
 
             <div class="mb-2 pb-2 border-b border-gray40">
@@ -212,7 +225,6 @@
                 v-model.lazy="formData.objectSize"
                 id="object-size"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
                 type="text"
               />
             </div>
@@ -225,7 +237,6 @@
                 v-model.lazy="formData.conditionDescription"
                 id="condition-description"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
               />
             </div>
 
@@ -237,54 +248,134 @@
                 v-model.lazy="formData.additionalInformation"
                 id="additional-information"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
               />
             </div>
 
-            <div class="flex justify-end mt-4">
-              <button
-                @click.prevent="$router.back()"
-                class="mx-2 px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none"
+            <div class="mb-2 pb-2 border-b border-gray40">
+              <label for="role" class="text-gray-600">Penanggung Jawab</label>
+              <select
+                v-model.lazy="formData.authorId"
+                id="role"
+                class="block mt-2 rounded-md w-full p-2 text-gray-700 bg-white border border-gray-40 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
               >
-                Cancel
-              </button>
-              <button
-                class="ml-2 px-4 py-2 text-gray-200 bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
-                type="submit"
-              >
-                Save
-              </button>
+                <option disabled selected>Pilih pegawai</option>
+                <option
+                  v-for="employee in employees"
+                  :value="employee.id"
+                  :key="employee.id"
+                >
+                  {{ employee.fullname }}
+                </option>
+              </select>
             </div>
 
-            <!-- end form--->
+            <div class="mb-2 pb-2 border-b border-gray40">
+              <label for="image" class="text-gray-600">Gambar</label>
+              <input
+                type="file"
+                @change="setImage"
+                id="image"
+                class="w-full mt-2 p-2 border border-gray-40 rounded-md resize-y focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
+              />
+            </div>
+
+            <!-- end component--->
           </div>
+
+          <div class="flex justify-end mt-4">
+            <button
+              @click.prevent="$router.back()"
+              class="mx-2 px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none"
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              class="ml-2 px-4 py-2 text-gray-200 bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+              type="submit"
+            >
+              Save
+            </button>
+          </div>
+
+          <!-- end form--->
         </div>
       </form>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { reactive } from "vue";
-import type { ICollectionCreateFormData } from "@/types/collections";
-import { parseUserRequest } from "@/utils/transforms/user";
-import { useUserStore } from "@/store/users";
+import { reactive, ref } from "vue";
+import {
+  MaterialType,
+  AcquisitionWayType,
+  StatusType,
+  type ICollectionCreateFormData,
+} from "@/types/collections";
+import {
+  parseCollectionRequest,
+  parseCollectionUpdate,
+} from "@/utils/transforms/collection";
 import { useToast } from "vue-toastification";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { useCollectionStore } from "@/store/collections";
+import { useEmployeeStore } from "@/store/employees";
+import { storeToRefs } from "pinia";
 
 const toast = useToast();
+const route = useRoute();
 const router = useRouter();
-const userStore = useUserStore();
+const id = route.params.id as string;
+const collectionStore = useCollectionStore();
+const employeeStore = useEmployeeStore();
+const imageFile = ref<File>();
 
-const formData = reactive<ICollectionCreateFormData>({});
+await collectionStore.getById(id);
+const { collection: oldData } = collectionStore;
+console.log(oldData);
+const formData = reactive<ICollectionCreateFormData>(
+  parseCollectionUpdate(oldData)
+);
 
-async function create() {
-  const data = parseUserRequest(formData);
+const { employees } = storeToRefs(employeeStore);
+
+async function update() {
+  if (imageFile.value === undefined) {
+    toast.error("No selected image!");
+    return;
+  }
   try {
-    await userStore.create(data);
-    toast.success("New user created!");
+    const imagePath = await collectionStore.uploadImage(imageFile.value);
+    const data = parseCollectionRequest(formData);
+    data.imagePath = imagePath;
+    await collectionStore.updateById(id, data);
+    toast.success("Collection updated!");
     router.go(-1);
-  } catch (e) {
-    console.error("gagal buat");
+  } catch (e: any) {
+    console.error(e);
   }
 }
+
+function setImage(e: Event) {
+  const target = e.target as HTMLInputElement;
+  if (target?.files?.length === 1) {
+    imageFile.value = target.files[0];
+  } else {
+    toast.info("Please choose an image!");
+  }
+}
+
+const materialType = Object.values(MaterialType).filter(
+  (o) => typeof o == "string"
+);
+
+const acquisitionWay = Object.values(AcquisitionWayType).filter(
+  (o) => typeof o == "string"
+);
+
+const statusType = Object.values(StatusType).filter(
+  (o) => typeof o == "string"
+);
+
+await employeeStore.getAll();
 </script>
