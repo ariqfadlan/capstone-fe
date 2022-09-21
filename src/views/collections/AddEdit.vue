@@ -7,6 +7,7 @@
     <Suspense v-else>
       <CollectionEdit v-if="isEditing" />
       <CollectionAdd v-else />
+      <template #fallback><CollectionFormSkeleton /></template>
     </Suspense>
   </div>
 </template>
@@ -17,6 +18,7 @@ import ErrorAlert from "@/partials/ErrorAlert.vue";
 import Breadcrumb from "@/partials/Breadcrumb.vue";
 import { useRoute } from "vue-router";
 import CollectionEdit from "@/components/collections/CollectionEdit.vue";
+import CollectionFormSkeleton from "../../partials/collections/CollectionFormSkeleton.vue";
 
 const route = useRoute();
 const id = route.params.id;
