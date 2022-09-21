@@ -55,6 +55,13 @@ export const useCollectionStore = defineStore("collection", () => {
     collection.value = data;
   };
 
+  const deleteById = async (id: string): Promise<void> => {
+    const { status } = await request.delete(`/collections/${id}`);
+    if (status === 204) {
+      collection.value = {};
+    }
+  };
+
   return {
     collections,
     collection,
@@ -63,5 +70,6 @@ export const useCollectionStore = defineStore("collection", () => {
     create,
     uploadImage,
     updateById,
+    deleteById,
   };
 });

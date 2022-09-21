@@ -1,4 +1,8 @@
 <template>
+  <CollectionDelete
+    v-bind="deleteProps"
+    @toggle-delete-modal="toggleDeleteModal"
+  />
   <div class="flex flex-row-reverse">
     <router-link :to="{ name: 'CollectionAdd' }">
       <button
@@ -112,9 +116,12 @@
                           <PencilSquareIcon class="h-5 w-5 text-green-700"
                         /></a>
                       </router-link>
-                      <a class="mx-2 px-2" href="#">
-                        <TrashIcon class="h-5 w-5 text-red-700"
-                      /></a>
+                      <button
+                        class="mx-2 px-2"
+                        @click.prevent="toggleDeleteModal(String(u.id))"
+                      >
+                        <TrashIcon class="h-5 w-5 text-red-700" />
+                      </button>
                     </span>
                   </div>
                 </td>
@@ -131,10 +138,22 @@ import { useCollectionStore } from "@/store/collections";
 import { DocumentMagnifyingGlassIcon } from "@heroicons/vue/24/outline";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/vue/24/solid";
 import { parseCollectionResponse } from "@/utils/transforms/collection";
-import { computed } from "vue";
+import { computed, ref } from "vue";
+import { storeToRefs } from "pinia";
+import CollectionDelete from "./CollectionDelete.vue";
 const collectionStore = useCollectionStore();
 
 await collectionStore.getAll();
-const { collections: responseData } = collectionStore;
-const collections = computed(() => responseData.map(parseCollectionResponse));
+const { collections: responseData } = storeToRefs(collectionStore);
+const collections = computed(() =>
+  responseData.value.map(parseCollectionResponse)
+);
+
+const deleteProps = ref({ isModalOpen: false, id: "" });
+function toggleDeleteModal(id: string) {
+  deleteProps.value.id = id;
+  if (deleteProps.value.isModalOpen === false) {
+    deleteProps.value.isModalOpen = true;
+  } else deleteProps.value.isModalOpen = false;
+}
 </script>
