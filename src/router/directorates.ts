@@ -1,13 +1,13 @@
 import type { RouteRecordRaw } from "vue-router";
-import CollectionLayout from "@/views/collections/CollectionLayout.vue";
-import List from "@/views/collections/List.vue";
-import Read from "@/views/collections/Read.vue";
-import AddEdit from "@/views/collections/AddEdit.vue";
+import Layout from "@/views/directorates/Layout.vue";
+import List from "@/views/directorates/List.vue";
+import Read from "@/views/directorates/Read.vue";
+import AddEdit from "@/views/directorates/AddEdit.vue";
 
 const route: RouteRecordRaw = {
   path: "/directorates",
   name: "Directorates",
-  component: CollectionLayout,
+  component: Layout,
   children: [
     {
       name: "DirectorateList",
