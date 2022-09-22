@@ -68,14 +68,12 @@
                           ><PencilSquareIcon class="h-5 w-5 text-green-700" />
                         </a>
                       </router-link>
-                      <form method="POST">
-                        <button
-                          @click.prevent="toggleDeleteModal(String(d.id))"
-                          class="mx-2 px-2 rounded-md"
-                        >
-                          <TrashIcon class="h-5 w-5 text-red-700" />
-                        </button>
-                      </form>
+                      <button
+                        @click.prevent="toggleDeleteModal(String(d.id))"
+                        class="mx-2 px-2 rounded-md"
+                      >
+                        <TrashIcon class="h-5 w-5 text-red-700" />
+                      </button>
                     </span>
                   </div>
                 </td>
@@ -99,9 +97,9 @@ const directorateStore = useDirectorateStore();
 await directorateStore.getAll();
 const { directorates } = storeToRefs(directorateStore);
 
-const deleteProps = ref({ isModalOpen: false, userId: "" });
+const deleteProps = ref({ isModalOpen: false, id: "" });
 function toggleDeleteModal(id: string) {
-  deleteProps.value.userId = id;
+  deleteProps.value.id = id;
   if (deleteProps.value.isModalOpen === false) {
     deleteProps.value.isModalOpen = true;
   } else deleteProps.value.isModalOpen = false;
