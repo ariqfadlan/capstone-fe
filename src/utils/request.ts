@@ -14,7 +14,9 @@ const service: AxiosInstance = axios.create({
 
 service.interceptors.request.use((config: AxiosRequestConfig) => {
   const { token } = useAuthStore();
-  config.headers = config.headers ?? {};
+
+  config.headers ??= {};
+  config.headers["Content-Type"] ??= "application/json";
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }

@@ -2,6 +2,7 @@
   "volar.takeOverMode.enabled": true,
   "tsserver.enable": false,
   "coc.preferences.formatOnSaveFiletypes": [
-    "vue"
+    "vue",
+    "typescript"
   ]
 }
