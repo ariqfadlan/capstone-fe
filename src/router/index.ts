@@ -13,6 +13,7 @@ import NotFound from "../views/NotFound.vue";
 import { useAuthStore } from "@/store/auth";
 import userRoutes from "./users";
 import collectionRoutes from "./collections";
+import directorateRoutes from "./directorates";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -32,47 +33,12 @@ const routes: Array<RouteRecordRaw> = [
     component: Dashboard,
     meta: { requiresAuth: true },
   },
-  {
-    path: "/forms",
-    name: "Forms",
-    component: Forms,
-  },
-  {
-    path: "/cards",
-    name: "Cards",
-    component: Card,
-  },
-  {
-    path: "/tables",
-    name: "Tables",
-    component: Tables,
-  },
-  {
-    path: "/ui-elements",
-    name: "UIElements",
-    component: UIElements,
-  },
-  {
-    path: "/modal",
-    name: "Modal",
-    component: Modal,
-  },
-  {
-    path: "/charts",
-    name: "Chart",
-    component: Chart,
-  },
-  {
-    path: "/blank",
-    name: "Blank",
-    component: Blank,
-  },
   { path: "/:pathMatch(.*)*", component: NotFound, meta: { layout: "empty" } },
 ];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...routes, userRoutes, collectionRoutes],
+  routes: [...routes, userRoutes, collectionRoutes, directorateRoutes],
 });
 
 router.beforeEach((to, _from, next) => {
