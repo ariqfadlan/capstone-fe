@@ -14,7 +14,7 @@
                 v-model.lazy="formData.name"
                 id="username"
                 class="w-full mt-2 p-2 border border-gray-40 rounded-md focus:ring focus:outline-none focus:ring-opacity-40 focus:ring-indigo-500"
-                placeholder="amandamanopo"
+                placeholder="Divisi Sumber Daya Manusia"
                 type="text"
               />
             </div>
