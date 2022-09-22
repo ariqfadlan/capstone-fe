@@ -8,7 +8,7 @@
         Close
       </button>
       <button
-        @click="$router.push({ name: 'UserUpdate', params: { id } })"
+        @click="$router.push({ name: 'DirectorateEdit', params: { id } })"
         class="ml-2 px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none"
       >
         Edit
