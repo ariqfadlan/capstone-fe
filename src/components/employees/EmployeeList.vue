@@ -106,9 +106,9 @@ const employeeStore = useEmployeeStore();
 await employeeStore.getAll();
 const { employees } = storeToRefs(employeeStore);
 
-const deleteProps = ref({ isModalOpen: false, userId: "" });
+const deleteProps = ref({ isModalOpen: false, id: "" });
 function toggleDeleteModal(id: string) {
-  deleteProps.value.userId = id;
+  deleteProps.value.id = id;
   if (deleteProps.value.isModalOpen === false) {
     deleteProps.value.isModalOpen = true;
   } else deleteProps.value.isModalOpen = false;

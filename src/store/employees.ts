@@ -40,5 +40,20 @@ export const useEmployeeStore = defineStore("employee", () => {
     employee.value = data;
   };
 
-  return { employee, employees, getAll, getById, create, updateById };
+  const deleteById = async (id: string): Promise<void> => {
+    const { status } = await request.delete(`/employees/${id}`);
+    if (status === 204) {
+      employee.value = {};
+    }
+  };
+
+  return {
+    employee,
+    employees,
+    getAll,
+    getById,
+    create,
+    updateById,
+    deleteById,
+  };
 });
