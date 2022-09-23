@@ -35,5 +35,10 @@ export const useEmployeeStore = defineStore("employee", () => {
     employee.value = data;
   };
 
-  return { employee, employees, getAll, getById, create };
+  const updateById = async (id: string, e: IEmployeeData): Promise<void> => {
+    const { data } = await request.put<IEmployeeData>(`/employees/${id}`, e);
+    employee.value = data;
+  };
+
+  return { employee, employees, getAll, getById, create, updateById };
 });
