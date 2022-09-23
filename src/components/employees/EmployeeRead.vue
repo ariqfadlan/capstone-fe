@@ -34,14 +34,14 @@
           <div class="mb-2 pb-2 border-b border-gray40">
             <div class="text-gray-700" for="emailAddress">Username</div>
             <div class="text-gray-700 font-semibold text-lg" for="username">
-              {{ result?.user.username }}
+              {{ result?.user?.username }}
             </div>
           </div>
 
           <div class="mb-2 pb-2 border-b border-gray40">
             <div class="text-gray-700" for="emailAddress">Peran</div>
             <div class="text-gray-700 font-semibold text-lg" for="username">
-              {{ result?.user.role }}
+              {{ result?.user?.role }}
             </div>
           </div>
 
