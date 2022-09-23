@@ -91,6 +91,20 @@
           <span class="mx-4">Directorates</span>
         </router-link>
 
+        <router-link
+          class="flex items-center px-6 py-2 mt-4 duration-200 border-l-4"
+          v-if="user.isSuperuser"
+          :class="[
+            $route.matched[0]?.name === 'Employees'
+              ? activeClass
+              : inactiveClass,
+          ]"
+          :to="{ name: 'EmployeeList' }"
+        >
+          <RectangleStackIcon class="w-5 h-5" />
+          <span class="mx-4">Employees</span>
+        </router-link>
+
         <!--
         <p class="pl-4 my-2 text-xs font-semibold mb-4 text-gray-400">
           Examples
@@ -282,7 +296,11 @@ import { useAuthStore } from "@/store/auth";
 import { ref } from "vue";
 import { useSidebar } from "../hooks/useSidebar";
 import { HomeIcon, UserGroupIcon } from "@heroicons/vue/24/outline";
-import { Squares2X2Icon, RectangleGroupIcon } from "@heroicons/vue/24/solid";
+import {
+  Squares2X2Icon,
+  RectangleGroupIcon,
+  RectangleStackIcon,
+} from "@heroicons/vue/24/solid";
 
 const authStore = useAuthStore();
 const { isOpen } = useSidebar();

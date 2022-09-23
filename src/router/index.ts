@@ -14,6 +14,7 @@ import { useAuthStore } from "@/store/auth";
 import userRoutes from "./users";
 import collectionRoutes from "./collections";
 import directorateRoutes from "./directorates";
+import employeeRoutes from "./employees";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -38,7 +39,13 @@ const routes: Array<RouteRecordRaw> = [
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...routes, userRoutes, collectionRoutes, directorateRoutes],
+  routes: [
+    ...routes,
+    userRoutes,
+    collectionRoutes,
+    directorateRoutes,
+    employeeRoutes,
+  ],
 });
 
 router.beforeEach((to, _from, next) => {
