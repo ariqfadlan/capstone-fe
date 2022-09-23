@@ -19,7 +19,7 @@ export const useEmployeeStore = defineStore("employee", () => {
     const { data } = await request.get<IEmployeeData>(`/employees/${id}`);
     const userRequest = request.get<IUserData>(`/users/${data.userId}`);
     const directorateRequest = await request.get<IDirectorateData>(
-      `/directorates/${data.userId}`
+      `/directorates/${data.directorateId}`
     );
     const [{ data: userData }, { data: directorateData }] = await Promise.all([
       userRequest,
