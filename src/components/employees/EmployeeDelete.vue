@@ -31,12 +31,14 @@
         <div class="flex justify-end mt-4 pt-2">
           <button
             @click="$emit('toggleDeleteModal')"
+            type="button"
             class="p-3 px-6 py-3 mr-2 text-indigo-600 border border-indigo-400 bg-transparent rounded-lg hover:bg-indigo-100 hover:text-indigo-800 focus:outline-none"
           >
             Batal
           </button>
           <button
             @click.prevent="remove"
+            type="button"
             class="px-6 py-3 font-medium tracking-wide text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none"
           >
             Hapus

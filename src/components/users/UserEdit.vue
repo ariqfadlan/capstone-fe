@@ -39,7 +39,7 @@
                   placeholder="•••••••••••"
                   :type="passwordInputType"
                 />
-                <button @click.prevent="toggleShowPassword">
+                <button @click.prevent="toggleShowPassword" type="button">
                   <EyeIcon
                     v-if="passwordInputType === 'password'"
                     class="w-6 h-6 absolute right-4 top-4 my-auto hover:text-indigo"
@@ -56,6 +56,7 @@
           <div class="flex justify-end mt-4">
             <button
               @click.prevent="$router.back()"
+              type="button"
               class="mx-2 px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none"
             >
               Cancel

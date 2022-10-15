@@ -7,6 +7,7 @@
     <router-link :to="{ name: 'DirectorateAdd' }">
       <button
         class="px-6 py-2 mt-3 font-medium tracking-wide text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none"
+        type="button"
       >
         Tambah Direktorat
       </button>
@@ -70,6 +71,7 @@
                       </router-link>
                       <button
                         @click.prevent="toggleDeleteModal(String(d.id))"
+                        type="button"
                         class="mx-2 px-2 rounded-md"
                       >
                         <TrashIcon class="h-5 w-5 text-red-700" />

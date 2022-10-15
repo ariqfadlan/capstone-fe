@@ -68,6 +68,7 @@
           <div class="flex justify-end mt-4">
             <button
               @click.prevent="$router.back()"
+              type="button"
               class="mx-2 px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none"
             >
               Cancel
