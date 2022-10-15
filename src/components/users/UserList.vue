@@ -3,6 +3,7 @@
   <div class="flex flex-row-reverse">
     <router-link :to="{ name: 'UserAdd' }">
       <button
+        type="button"
         class="px-6 py-2 mt-3 font-medium tracking-wide text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none"
       >
         Tambah Pengguna
@@ -72,14 +73,13 @@
                           ><PencilSquareIcon class="h-5 w-5 text-green-700" />
                         </a>
                       </router-link>
-                      <form method="POST">
-                        <button
-                          @click.prevent="toggleDeleteModal(String(u.id))"
-                          class="mx-2 px-2 rounded-md"
-                        >
-                          <TrashIcon class="h-5 w-5 text-red-700" />
-                        </button>
-                      </form>
+                      <button
+                        @click.prevent="toggleDeleteModal(String(u.id))"
+                        type="button"
+                        class="mx-2 px-2 rounded-md"
+                      >
+                        <TrashIcon class="h-5 w-5 text-red-700" />
+                      </button>
                     </span>
                   </div>
                 </td>

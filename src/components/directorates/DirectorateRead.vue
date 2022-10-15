@@ -3,12 +3,14 @@
     <div class="flex justify-end mt-4">
       <button
         @click="$router.back()"
+        type="button"
         class="mx-2 px-4 py-2 text-indigo-600 border border-indigo-200 bg-white rounded-md hover:text-indigo-800 hover:bg-indigo-100 focus:outline-none"
       >
         Close
       </button>
       <button
         @click="$router.push({ name: 'DirectorateEdit', params: { id } })"
+        type="button"
         class="ml-2 px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none"
       >
         Edit
