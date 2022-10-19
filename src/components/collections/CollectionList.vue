@@ -3,21 +3,39 @@
     v-bind="deleteProps"
     @toggle-delete-modal="toggleDeleteModal"
   />
+  <CollectionImport
+    v-bind="importProps"
+    @toggle-import-modal="toggleImportModal"
+  />
   <div class="flex flex-row-reverse">
     <router-link :to="{ name: 'CollectionAdd' }">
       <button
-        class="px-6 py-2 mt-3 font-medium tracking-wide text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none"
+        class="px-6 py-2 mt-3 ml-3 font-medium tracking-wide text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none"
         type="button"
       >
         Tambah Koleksi
       </button>
     </router-link>
     <button
-      class="px-6 py-2 mt-3 mx-3 text-indigo-500 bg-white rounded-lg hover:bg-gray-100 hover:text-indigo-400 focus:outline-none"
+      class="px-6 py-2 mt-3 ml-3 text-indigo-500 bg-white rounded-lg hover:bg-gray-100 hover:text-indigo-400 focus:outline-none"
       type="button"
-      @click.prevent="download"
+      @click.prevent="downloadAtom"
     >
       Ekspor Atom
+    </button>
+    <button
+      class="px-6 py-2 mt-3 ml-3 text-indigo-500 bg-white rounded-lg hover:bg-gray-100 hover:text-indigo-400 focus:outline-none"
+      type="button"
+      @click.prevent="toggleImportModal"
+    >
+      Impor CSV
+    </button>
+    <button
+      class="px-6 py-2 mt-3 ml-3 text-indigo-500 bg-white rounded-lg hover:bg-gray-100 hover:text-indigo-400 focus:outline-none"
+      type="button"
+      @click.prevent="downloadCSV"
+    >
+      Ekspor CSV
     </button>
   </div>
   <div class="mt-8">
@@ -150,6 +168,7 @@ import { computed, ref } from "vue";
 import { storeToRefs } from "pinia";
 import CollectionDelete from "./CollectionDelete.vue";
 import request from "@/utils/request";
+import CollectionImport from "./CollectionImport.vue";
 const collectionStore = useCollectionStore();
 
 await collectionStore.getAll();
@@ -166,7 +185,14 @@ function toggleDeleteModal(id: string) {
   } else deleteProps.value.isModalOpen = false;
 }
 
-async function download() {
+const importProps = ref({ isModalOpen: false });
+function toggleImportModal() {
+  if (importProps.value.isModalOpen === false) {
+    importProps.value.isModalOpen = true;
+  } else importProps.value.isModalOpen = false;
+}
+
+async function downloadAtom() {
   try {
     const response = await request.get("/collections/atomexport", {
       responseType: "arraybuffer",
@@ -177,6 +203,23 @@ async function download() {
     const link = document.createElement("a");
     link.href = url;
     link.setAttribute("download", "atom-collections.csv");
+    document.body.appendChild(link);
+    link.click();
+  } catch (e) {
+    console.error(e);
+  }
+}
+async function downloadCSV() {
+  try {
+    const response = await request.get("/collections/export", {
+      responseType: "arraybuffer",
+    });
+    const url = window.URL.createObjectURL(
+      new Blob([response.data], { type: "application/csv" })
+    );
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "collections.csv");
     document.body.appendChild(link);
     link.click();
   } catch (e) {
