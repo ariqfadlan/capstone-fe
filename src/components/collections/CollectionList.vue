@@ -167,8 +167,8 @@ import { parseCollectionResponse } from "@/utils/transforms/collection";
 import { computed, ref } from "vue";
 import { storeToRefs } from "pinia";
 import CollectionDelete from "./CollectionDelete.vue";
-import request from "@/utils/request";
 import CollectionImport from "./CollectionImport.vue";
+
 const collectionStore = useCollectionStore();
 
 await collectionStore.getAll();
@@ -194,9 +194,7 @@ function toggleImportModal() {
 
 async function downloadAtom() {
   try {
-    const response = await request.get("/collections/atomexport", {
-      responseType: "arraybuffer",
-    });
+    const response = await collectionStore.downloadAtomCSV();
     const url = window.URL.createObjectURL(
       new Blob([response.data], { type: "application/csv" })
     );
@@ -211,9 +209,7 @@ async function downloadAtom() {
 }
 async function downloadCSV() {
   try {
-    const response = await request.get("/collections/export", {
-      responseType: "arraybuffer",
-    });
+    const response = await collectionStore.downloadCSV();
     const url = window.URL.createObjectURL(
       new Blob([response.data], { type: "application/csv" })
     );

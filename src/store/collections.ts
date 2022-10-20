@@ -6,6 +6,7 @@ import type {
   ICollectionRequestData,
 } from "@/types/collections";
 import { ref } from "vue";
+import type { AxiosResponse } from "axios";
 
 export const useCollectionStore = defineStore("collection", () => {
   const collections = ref<ICollectionResponseData[]>([]);
@@ -44,6 +45,31 @@ export const useCollectionStore = defineStore("collection", () => {
     return data.imageUrl;
   };
 
+  const uploadCSV = async (file: File): Promise<void> => {
+    let fd = new FormData();
+
+    fd.append("uploadfile", file);
+
+    await request.post("/collections/import", fd, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    await getAll();
+  };
+
+  const downloadCSV = async (): Promise<AxiosResponse> => {
+    const response = await request.get("/collections/export", {
+      responseType: "arraybuffer",
+    });
+    return response;
+  };
+
+  const downloadAtomCSV = async (): Promise<AxiosResponse> => {
+    const response = await request.get("/collections/atomexport", {
+      responseType: "arraybuffer",
+    });
+    return response;
+  };
+
   const updateById = async (
     id: string,
     req: ICollectionRequestData
@@ -69,7 +95,10 @@ export const useCollectionStore = defineStore("collection", () => {
     getById,
     create,
     uploadImage,
+    uploadCSV,
     updateById,
     deleteById,
+    downloadAtomCSV,
+    downloadCSV,
   };
 });
