@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import request from "@/utils/request";
 import type {
-  ICollectionData,
+  ISyncCollectionResponseData,
   ICollectionResponseData,
   ICollectionRequestData,
 } from "@/types/collections";
@@ -70,6 +70,13 @@ export const useCollectionStore = defineStore("collection", () => {
     return response;
   };
 
+  const syncProvidence = async (): Promise<ISyncCollectionResponseData> => {
+    const { data } = await request.post("/collections/providencesync", {
+      responseType: "arraybuffer",
+    });
+    return data;
+  };
+
   const updateById = async (
     id: string,
     req: ICollectionRequestData
@@ -98,6 +105,7 @@ export const useCollectionStore = defineStore("collection", () => {
     uploadCSV,
     updateById,
     deleteById,
+    syncProvidence,
     downloadAtomCSV,
     downloadCSV,
   };

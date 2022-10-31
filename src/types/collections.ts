@@ -98,4 +98,8 @@ export interface ICollectionCreateFormData {
   authorId?: string;
 }
 
+export interface ISyncCollectionResponseData {
+  synced?: number;
+}
+
 export interface ICollectionRequestData extends ICollectionResponseData {}
