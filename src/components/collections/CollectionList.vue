@@ -21,7 +21,7 @@
       type="button"
       @click.prevent="syncProvidence"
     >
-      Sinkron
+      Sinkron Providence
     </button>
     <button
       class="px-6 py-2 mt-3 ml-3 text-indigo-500 bg-white rounded-lg hover:bg-gray-100 hover:text-indigo-400 focus:outline-none"

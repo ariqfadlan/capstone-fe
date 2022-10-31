@@ -10,3 +10,7 @@ export interface IEmployeeData {
   user?: IUserData;
   directorate?: IDirectorateData;
 }
+
+export interface ISyncEmployeeResponseData {
+  synced?: number;
+}
