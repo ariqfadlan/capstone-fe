@@ -126,7 +126,7 @@ function toggleDeleteModal(id: string) {
 async function syncProvidence() {
   try {
     const { synced: numberOfSynced } = await employeeStore.syncProvidence();
-    toast.success(`Successfully synced ${numberOfSynced} collections!`);
+    toast.success(`Successfully synced ${numberOfSynced} employees!`);
   } catch (e) {
     console.error(e);
     toast.error("Error syncing! Call your sysadmin!");
