@@ -1,5 +1,8 @@
 import type { IDirectorateData } from "@/types/directorates";
-import type { IEmployeeData } from "@/types/employees";
+import type {
+  IEmployeeData,
+  ISyncEmployeeResponseData,
+} from "@/types/employees";
 import type { IUserData } from "@/types/users";
 import request from "@/utils/request";
 import parseUserResponse from "@/utils/transforms/user";
@@ -47,6 +50,13 @@ export const useEmployeeStore = defineStore("employee", () => {
     }
   };
 
+  const syncProvidence = async (): Promise<ISyncEmployeeResponseData> => {
+    const { data } = await request.post("/employees/providencesync", {
+      responseType: "arraybuffer",
+    });
+    return data;
+  };
+
   return {
     employee,
     employees,
@@ -55,5 +65,6 @@ export const useEmployeeStore = defineStore("employee", () => {
     create,
     updateById,
     deleteById,
+    syncProvidence,
   };
 });

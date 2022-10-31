@@ -7,11 +7,18 @@
     <router-link :to="{ name: 'EmployeeAdd' }">
       <button
         type="button"
-        class="px-6 py-2 mt-3 font-medium tracking-wide text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none"
+        class="px-6 py-2 mt-3 ml-3 font-medium tracking-wide text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none"
       >
         Tambah Pegawai
       </button>
     </router-link>
+    <button
+      class="px-6 py-2 mt-3 ml-3 text-indigo-500 bg-white rounded-lg hover:bg-gray-100 hover:text-indigo-400 focus:outline-none"
+      type="button"
+      @click.prevent="syncProvidence"
+    >
+      Sinkron Providence
+    </button>
   </div>
   <div class="mt-8">
     <div class="flex flex-col mt-6">
@@ -101,7 +108,9 @@ import { PencilSquareIcon, TrashIcon } from "@heroicons/vue/24/solid";
 import EmployeeDelete from "./EmployeeDelete.vue";
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
+import { useToast } from "vue-toastification";
 
+const toast = useToast();
 const employeeStore = useEmployeeStore();
 await employeeStore.getAll();
 const { employees } = storeToRefs(employeeStore);
@@ -112,5 +121,15 @@ function toggleDeleteModal(id: string) {
   if (deleteProps.value.isModalOpen === false) {
     deleteProps.value.isModalOpen = true;
   } else deleteProps.value.isModalOpen = false;
+}
+
+async function syncProvidence() {
+  try {
+    const { synced: numberOfSynced } = await employeeStore.syncProvidence();
+    toast.success(`Successfully synced ${numberOfSynced} employees!`);
+  } catch (e) {
+    console.error(e);
+    toast.error("Error syncing! Call your sysadmin!");
+  }
 }
 </script>

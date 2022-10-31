@@ -19,6 +19,13 @@
     <button
       class="px-6 py-2 mt-3 ml-3 text-indigo-500 bg-white rounded-lg hover:bg-gray-100 hover:text-indigo-400 focus:outline-none"
       type="button"
+      @click.prevent="syncProvidence"
+    >
+      Sinkron Providence
+    </button>
+    <button
+      class="px-6 py-2 mt-3 ml-3 text-indigo-500 bg-white rounded-lg hover:bg-gray-100 hover:text-indigo-400 focus:outline-none"
+      type="button"
       @click.prevent="downloadAtom"
     >
       Ekspor Atom
@@ -166,10 +173,12 @@ import { PencilSquareIcon, TrashIcon } from "@heroicons/vue/24/solid";
 import { parseCollectionResponse } from "@/utils/transforms/collection";
 import { computed, ref } from "vue";
 import { storeToRefs } from "pinia";
+import { useToast } from "vue-toastification";
 import CollectionDelete from "./CollectionDelete.vue";
 import CollectionImport from "./CollectionImport.vue";
 
 const collectionStore = useCollectionStore();
+const toast = useToast();
 
 await collectionStore.getAll();
 const { collections: responseData } = storeToRefs(collectionStore);
@@ -220,6 +229,16 @@ async function downloadCSV() {
     link.click();
   } catch (e) {
     console.error(e);
+  }
+}
+
+async function syncProvidence() {
+  try {
+    const { synced: numberOfSynced } = await collectionStore.syncProvidence();
+    toast.success(`Successfully synced ${numberOfSynced} collections!`);
+  } catch (e) {
+    console.error(e);
+    toast.error("Error syncing! Call your sysadmin!");
   }
 }
 </script>
