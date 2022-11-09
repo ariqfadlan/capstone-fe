@@ -101,7 +101,7 @@
                   class="px-6 py-3 text-xs leading-4 tracking-wider text-left text-gray-500 bg-gray-100 border-b border-gray-200"
                 >
                   <button
-                    class="appearance-none flex flex-column items-center uppercase font-medium"
+                    class="appearance-none flex flex-column items-center tracking-wider uppercase font-medium"
                     @click="toggleSort('name')"
                     type="button"
                   >
@@ -124,7 +124,7 @@
                   class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100 border-b border-gray-200"
                 >
                   <button
-                    class="appearance-none flex flex-column items-center uppercase font-medium"
+                    class="appearance-none flex flex-column items-center uppercase tracking-wider font-medium"
                     @click="toggleSort('material')"
                     type="button"
                   >
@@ -148,7 +148,7 @@
                   class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100 border-b border-gray-200"
                 >
                   <button
-                    class="appearance-none flex flex-column items-center uppercase font-medium"
+                    class="appearance-none flex flex-column items-center uppercase tracking-wider font-medium"
                     @click="toggleSort('typeCode')"
                     type="button"
                   >
@@ -172,7 +172,7 @@
                   class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100 border-b border-gray-200"
                 >
                   <button
-                    class="appearance-none flex flex-column items-center uppercase font-medium"
+                    class="appearance-none flex flex-column items-center uppercase tracking-wider font-medium"
                     @click="toggleSort('status')"
                     type="button"
                   >
@@ -195,7 +195,7 @@
                   class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100 border-b border-gray-200"
                 >
                   <button
-                    class="appearance-none flex flex-column items-center uppercase font-medium"
+                    class="appearance-none flex flex-column items-center uppercase tracking-wider font-medium"
                     @click="toggleSort('storage')"
                     type="button"
                   >
@@ -357,6 +357,7 @@ import { sort } from "fast-sort";
 
 const collectionStore = useCollectionStore();
 const toast = useToast();
+
 const searchKeyword = ref<string>("");
 const sorting = reactive<{
   currentKey: keyof ICollectionData;
