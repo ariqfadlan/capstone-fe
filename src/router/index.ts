@@ -1,14 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import type { RouteRecordRaw } from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
-import Forms from "../views/Forms.vue";
-import Tables from "../views/Tables.vue";
-import UIElements from "../views/UIElements.vue";
 import Login from "../views/Login.vue";
-import Modal from "../views/Modal.vue";
-import Chart from "../views/ChartView.vue";
-import Card from "../views/CardView.vue";
-import Blank from "../views/BlankView.vue";
 import NotFound from "../views/NotFound.vue";
 import { useAuthStore } from "@/store/auth";
 import userRoutes from "./users";
