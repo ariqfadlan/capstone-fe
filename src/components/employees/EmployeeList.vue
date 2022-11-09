@@ -234,6 +234,7 @@ import { storeToRefs } from "pinia";
 import { useToast } from "vue-toastification";
 import type { IEmployeeData } from "@/types/employees";
 import { sort } from "fast-sort";
+import { naturalSort } from "@/utils/sort";
 
 const searchKeyword = ref<string>("");
 const sorting = reactive<{
@@ -279,8 +280,8 @@ const filteredResponseData = computed(() => {
     );
   });
   const sortedItems = sorting.isAscending
-    ? sort(filteredItems).asc((u) => u[sorting.currentKey])
-    : sort(filteredItems).desc((u) => u[sorting.currentKey]);
+    ? naturalSort(filteredItems).asc((u) => u[sorting.currentKey])
+    : naturalSort(filteredItems).desc((u) => u[sorting.currentKey]);
   return sortedItems;
 });
 
