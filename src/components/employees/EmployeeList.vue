@@ -233,7 +233,6 @@ import { ref, reactive, watch, computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useToast } from "vue-toastification";
 import type { IEmployeeData } from "@/types/employees";
-import { sort } from "fast-sort";
 import { naturalSort } from "@/utils/sort";
 
 const searchKeyword = ref<string>("");

@@ -3,18 +3,15 @@
     <div class="w-full max-w-sm p-6 bg-white rounded-md shadow-md">
       <div class="flex items-center justify-center">
         <svg
-          class="w-8 h-8 ml-2 text-blue-500"
-          fill="none"
+          class="w-10 h-10 ml-2 text-blue-600"
+          fill="currentColor"
           stroke="currentColor"
-          viewBox="0 0 24 24"
+          viewBox="0 0 512 512"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
-          ></path>
+            d="M256 26.2L52 135h408L256 26.2zM73 153v14h366v-14H73zm16 32v206h30V185H89zm101.334 0v206h30V185h-30zm101.332 0v206h30V185h-30zM393 185v206h30V185h-30zM73 409v30h366v-30H73zm-32 48v30h430v-30H41z"
+          />
         </svg>
         <span class="text-xl font-semibold text-gray-700"
           >SI Museum &amp; Cagar Budaya</span
@@ -64,26 +61,7 @@
           </button>
         </div>
 
-        <div class="flex items-center justify-between mt-4">
-          <div>
-            <label class="inline-flex items-center">
-              <input
-                type="checkbox"
-                class="text-indigo-600 border-gray-200 rounded-md focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
-              />
-              <span class="mx-2 text-sm text-gray-600">Remember me</span>
-            </label>
-          </div>
-
-          <div>
-            <a
-              class="block text-sm text-indigo-700 fontme hover:underline"
-              @click="logout"
-              href="#"
-              >Forgot your password?</a
-            >
-          </div>
-        </div>
+        <div class="flex items-center justify-between mt-4"></div>
 
         <div class="mt-6">
           <button
@@ -116,10 +94,6 @@ const passwordInputType = ref("password");
 const toggleShowPassword = () => {
   passwordInputType.value =
     passwordInputType.value === "password" ? "text" : "password";
-};
-
-const logout = (): void => {
-  authStore.logout();
 };
 
 async function login() {

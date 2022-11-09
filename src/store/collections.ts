@@ -35,7 +35,7 @@ export const useCollectionStore = defineStore("collection", () => {
   };
 
   const uploadImage = async (file: File): Promise<string> => {
-    let fd = new FormData();
+    const fd = new FormData();
 
     fd.append("image", file);
 
@@ -46,7 +46,7 @@ export const useCollectionStore = defineStore("collection", () => {
   };
 
   const uploadCSV = async (file: File): Promise<void> => {
-    let fd = new FormData();
+    const fd = new FormData();
 
     fd.append("uploadfile", file);
 
