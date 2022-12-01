@@ -91,7 +91,7 @@
     <div class="flex flex-col mt-6">
       <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <div
-          v-if="collections.length !== 0"
+          v-if="collections?.length !== 0"
           class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg"
         >
           <table class="min-w-full">
@@ -299,10 +299,11 @@
 
           <div
             class="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between"
+            v-if="collections?.length"
           >
             <span class="text-xs text-gray-900 xs:text-sm">{{
               `Halaman ${paginate.currentPage} dari ${Math.ceil(
-                collections.length / paginate.size
+                collections?.length / paginate.size
               )}`
             }}</span>
 
@@ -377,7 +378,7 @@ const { collections: responseData } = storeToRefs(collectionStore);
 
 const collections = computed(() => {
   const items = responseData.value?.map(parseCollectionResponse);
-  const filteredItems = items.filter((item) => {
+  const filteredItems = items?.filter((item) => {
     return (
       item.name!.toLowerCase().indexOf(searchKeyword.value?.toLowerCase()) > -1
     );
@@ -389,7 +390,7 @@ const collections = computed(() => {
 });
 
 const displayedCollections = computed(() => {
-  return collections.value.filter((_, index) => {
+  return collections.value?.filter((_, index) => {
     let start = (paginate.currentPage - 1) * paginate.size;
     let end = paginate.currentPage * paginate.size;
     if (index >= start && index < end) return true;

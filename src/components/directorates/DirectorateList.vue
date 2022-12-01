@@ -62,7 +62,7 @@
     <div class="flex flex-col mt-6">
       <div
         class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
-        v-if="filteredResponseData.length !== 0"
+        v-if="filteredResponseData?.length !== 0"
       >
         <div
           class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg"
@@ -151,10 +151,11 @@
 
           <div
             class="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between"
+            v-if="filteredResponseData?.length"
           >
             <span class="text-xs text-gray-900 xs:text-sm">{{
               `Halaman ${paginate.currentPage} dari ${Math.ceil(
-                filteredResponseData.length / paginate.size
+                filteredResponseData?.length / paginate.size
               )}`
             }}</span>
 
@@ -171,7 +172,7 @@
                 class="px-4 py-2 text-sm font-semibold text-gray-800 bg-gray-300 rounded-r hover:bg-gray-400 disabled:opacity-25"
                 :disabled="
                   paginate.currentPage ==
-                  Math.ceil(filteredResponseData.length / paginate.size)
+                  Math.ceil(filteredResponseData?.length / paginate.size)
                 "
                 type="button"
                 @click="nextPage"
@@ -218,11 +219,13 @@ const paginate = reactive({
 });
 
 const directorateStore = useDirectorateStore();
+
 await directorateStore.getAll();
+
 const { directorates: responseData } = storeToRefs(directorateStore);
 
 const filteredResponseData = computed(() => {
-  const filteredItems = responseData.value.filter((item) => {
+  const filteredItems = responseData.value?.filter((item) => {
     return (
       item.name!.toLowerCase().indexOf(searchKeyword.value?.toLowerCase()) > -1
     );
@@ -234,7 +237,7 @@ const filteredResponseData = computed(() => {
 });
 
 const directorates = computed(() => {
-  return filteredResponseData.value.filter((_, index) => {
+  return filteredResponseData.value?.filter((_, index) => {
     let start = (paginate.currentPage - 1) * paginate.size;
     let end = paginate.currentPage * paginate.size;
     if (index >= start && index < end) return true;
